@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.37/moment-timezone-with-data-1970-2030.min.js"></script>
+    <title>Current date</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <div class="city-wrapper">
+      <select id="city-select" name="city">
+        <option value="disabled selected hidden">Select a city</option>
+        <option value="paris" class="paris" id="paris">Paris (FR)</option>
+        <option value="tokyo" class="tokyo" id="tokyo">Tokyo (JP)</option>
+        <option value="sydney" class="sydney" id="sydney">Sydney (AU)</option>
+      </select>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
