@@ -5,18 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.37/moment-timezone-with-data-1970-2030.min.js"></script>
-    <title>Current date</title>
-    <link rel="stylesheet" href="src/style.css" />
+    <title>Time zones</title>
+
+    <style>
+      .city-wrapper {
+        margin: 20px 50px;
+      }
+      select {
+        width: 250px;
+        padding: 10px 14px;
+        border: 2px solid #555;
+        border-radius: 8px;
+        font-size: 16px;
+        appearance: none;
+        background: white
+          url('data:image/svg+xml;utf8,<svg fill="black" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>')
+          no-repeat right 10px center;
+        background-size: 16px;
+        cursor: pointer;
+      }
+
+      .city-label {
+        display: block;
+        margin-bottom: 4px;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
     <div class="city-wrapper">
       <select id="city-select" name="city">
-        <option value="disabled selected hidden">Select a city</option>
-        <option value="paris" class="paris" id="paris">Paris (FR)</option>
-        <option value="tokyo" class="tokyo" id="tokyo">Tokyo (JP)</option>
-        <option value="sydney" class="sydney" id="sydney">Sydney (AU)</option>
+        <option value="">Select a city</option>
+        <option value="Europe/Paris">Paris (FR)</option>
+        <option value="Asia/Tokyo">Tokyo (JP)</option>
+        <option value="Australia/Sydney">Sydney (AU)</option>
       </select>
     </div>
-    <script src="src/index.js"></script>
+
+    <script>
+      function showDate(event) {
+        if (event.target.value.length > 0) {
+          let currentTime = moment()
+            .tz(event.target.value)
+            .format("dddd, MMMM D, YYYY h:mm A");
+
+          alert(`It is ${currentTime} in ${event.target.value}`);
+        }
+      }
+
+      let selectElement = document.querySelector("#city-select");
+      selectElement.addEventListener("change", showDate);
+    </script>
   </body>
 </html>
+
+<!-- <script>
+      let citySelect = document.querySelector("#city-select");
+
+      citySelect.addEventListener("change", function () {
+        let selected = citySelect.value;
+        let time;
+
+        if (selected === "paris") {
+          time = moment()
+            .tz("Europe/Paris")
+            .format("dddd, MMMM D, YYYY h:mm A");
+        }
+        if (selected === "tokyo") {
+          time = moment().tz("Asia/Tokyo").format("dddd, MMMM D, YYYY h:mm A");
+        }
+        if (selected === "sydney") {
+          time = moment()
+            .tz("Australia/Sydney")
+            .format("dddd, MMMM D, YYYY h:mm A");
+        }
+
+        if (time) {
+          alert(time);
+        }
+      });
+    </script> -->
